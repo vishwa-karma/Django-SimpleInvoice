@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Invoicee(models.Model):
@@ -8,6 +9,9 @@ class Invoicee(models.Model):
 
     def __str__(self):
         return self.r_name
+
+    def get_absolute_url(self):
+        return reverse('invoicee-detail', kwargs={'pk': self.pk})
 
 class Client(models.Model):
     c_name = models.CharField(verbose_name = "Client", max_length = 70, unique = True)
@@ -19,12 +23,12 @@ class Client(models.Model):
 
 class Invoice(models.Model):
     invoice_num = models.CharField(max_length = 10, unique = True)
-    invoice_date = models.DateField(auto_now=True)
+    invoice_date = models.DateField(auto_now=False)
     service = models.CharField(max_length = 100)
     unt_price = models.IntegerField()
     n_days = models.IntegerField()
-    total_price = models.IntegerField(blank=True)
-    cab_price = models.IntegerField(blank=True)
+    total_price = models.IntegerField(blank=True, editable=False, )
+    cab_price = models.IntegerField(default=0)
     client_name = models.ForeignKey(Client, to_field='c_name', on_delete=models.PROTECT)
     invoicee_name = models.ForeignKey(Invoicee, to_field='r_name', on_delete=models.PROTECT)
 
@@ -39,4 +43,5 @@ class Invoice(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return self.invoice_num
+        firlds = (self.invoice_date, self.invoice_num, self.invoicee_name, self.client_name)
+        return str(firlds)

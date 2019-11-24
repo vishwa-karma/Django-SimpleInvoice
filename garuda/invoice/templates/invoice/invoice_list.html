@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Invoices</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Invoices</h1>
+    <p><a href="/create">Create Invoice</a></p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Invoice Number</th>
+                <th scope="col">Client</th>
+                <th scope="col">Recipient</th>
+                <th scope="col">Invoice Date</th>
+                <th scope="col">Service Provided</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Number of Days</th>
+                <th scope="col">Cab Price</th>
+                <th scope="col">Total Price</th>
+            </tr>
+        </thead>
+        {% for object in object_list %}
+        <tbody>
+            <tr>
+                <td><a href="/{{ object.id }}">{{ object.invoice_num }}</a></td>
+                <td><a href="/{{ object.client_name }}">{{ object.client_name }}</a></td>
+                <td><a href="/{{ object.invoicee_name }}">{{ object.invoicee_name }}</a></td>
+                <td>{{ object.invoice_date }}</td>
+                <td>{{ object.service }}</td>
+                <td>{{ object.unt_price }}</td>
+                <td>{{ object.n_days }}</td>
+                <td>{{ object.cab_price }}</td>
+                <td>{{ object.total_price }}</td>
+        {% empty %}
+            <p>No invoices yet.</p>
+        {% endfor %}        
+                    
+            </tr>
+        </tbody>
+        
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
