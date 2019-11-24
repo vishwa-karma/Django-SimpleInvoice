@@ -24,7 +24,7 @@ class Client(models.Model):
 
 class Invoice(models.Model):
     invoice_num = models.CharField(max_length = 10, unique = True)
-    invoice_date = models.DateField(auto_now=False, default=timezone.now())
+    invoice_date = models.DateField(auto_now=False, default=timezone.now)
     service = models.CharField(max_length = 100)
     unt_price = models.IntegerField()
     n_days = models.IntegerField()
@@ -44,5 +44,8 @@ class Invoice(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        firlds = (self.invoice_date, self.invoice_num, self.invoicee_name, self.client_name)
-        return str(firlds)
+        #firlds = (self.invoice_date, self.invoice_num, self.invoicee_name, self.client_name)
+        return self.invoice_num
+
+    def get_absolute_url(self):
+        return reverse('invoice-list')

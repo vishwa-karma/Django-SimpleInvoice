@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
-**people/person_form.html**
+
 
 {% block content %}
     <form method="post" novalidate>{% csrf_token %}
@@ -10,7 +10,10 @@
                 {{ form.invoice_num | as_crispy_field }}
             </div>
             <div class="col-6">
-                {{ form.invoice_date | as_crispy_field }}
+                    
+                        {{ form.invoice_date | as_crispy_field }}
+                    
+                    
             </div>
         </div>
         {{ form.service | as_crispy_field }}
