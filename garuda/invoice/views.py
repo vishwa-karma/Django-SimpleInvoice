@@ -3,6 +3,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from .models import Invoice, Invoicee, Client
+from .forms import InvoiceForm
 
 # Create your views here.
 class InvoiceListView(ListView):
@@ -23,4 +24,5 @@ class InvoiceDetailView(DetailView):
 
 class InvoiceCreateView(CreateView):
     model = Invoice
+    template_name = 'invoice/invoice_form.html'
     fields = '__all__'

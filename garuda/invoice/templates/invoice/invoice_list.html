@@ -5,10 +5,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <style>
+      .page-header {
+    background-color: #C25100;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+    }
+
+    .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+    }
+
+    .top-menu, .top-menu:hover, .top-menu:visited {
+    color: white;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+    }
+    
+    h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+    }
+</style>
 </head>
 <body>
-    <h1>Invoices</h1>
-    <p><a href="/create">Create Invoice</a></p>
+    <div class="page-header">
+        <p><a href="/create" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></p>
+        <h1><a href='/'>Invoices</a></h1>
+    </div>
     <table class="table table-hover">
         <thead>
             <tr>

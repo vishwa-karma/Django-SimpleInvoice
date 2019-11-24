@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 # Create your models here.
 class Invoicee(models.Model):
@@ -23,7 +24,7 @@ class Client(models.Model):
 
 class Invoice(models.Model):
     invoice_num = models.CharField(max_length = 10, unique = True)
-    invoice_date = models.DateField(auto_now=False)
+    invoice_date = models.DateField(auto_now=False, default=timezone.now())
     service = models.CharField(max_length = 100)
     unt_price = models.IntegerField()
     n_days = models.IntegerField()

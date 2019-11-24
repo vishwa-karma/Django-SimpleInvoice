@@ -1,4 +1,24 @@
-<form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Create">
-</form>
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+**people/person_form.html**
+
+{% block content %}
+    <form method="post" novalidate>{% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                {{ form.invoice_num | as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.invoice_date | as_crispy_field }}
+            </div>
+        </div>
+        {{ form.service | as_crispy_field }}
+        {{ form.unt_price | as_crispy_field }}
+        {{ form.n_days | as_crispy_field }}
+        {{ form.cab_price | as_crispy_field }}
+        {{ form.client_name | as_crispy_field }}
+        {{ form.invoicee_name | as_crispy_field }}
+        <input type="submit" class="btn btn-success" value="Create Invoice">
+    </form>
+{% endblock %}
