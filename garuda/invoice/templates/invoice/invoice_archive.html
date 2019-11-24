@@ -1,0 +1,5 @@
+<ul>
+    {% for invoice in latest %}
+        <li>{{ invoice.invoice_date }}: {{ invoice.invoice_num }}</li>
+    {% endfor %}
+</ul>
