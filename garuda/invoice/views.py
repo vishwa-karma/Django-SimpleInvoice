@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -49,3 +49,8 @@ class InvoiceMonthArchiveView(MonthArchiveView):
 def RecipientView(request, r_name):
     recipent = Invoice.objects.all().filter(invoicee_name__exact=r_name)
     return render(request, 'invoice/list_by_name.html', {'recipent':recipent})
+
+def ListbyVendor(request, c_name):
+    queryset = Invoice.objects.all().filter(client_name__exact=c_name)
+    recipent = get_list_or_404(queryset)
+    return render(request, 'invoice/list_by_name.html',  {'recipent':recipent})

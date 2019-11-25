@@ -1,5 +1,94 @@
-<ul>
-        {% for invoice in recipent %}
-            <li>{{ invoice.invoice_date }}: {{ invoice.invoice_num }}</li>
-        {% endfor %}
-    </ul>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Invoices</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+      <style>
+          .page-header {
+        background-color: #C25100;
+        margin-top: 0;
+        padding: 20px 20px 20px 40px;
+        }
+    
+        .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+        color: #ffffff;
+        font-size: 36pt;
+        text-decoration: none;
+        }
+    
+        .top-menu, .top-menu:hover, .top-menu:visited {
+        color: white;
+        float: right;
+        font-size: 26pt;
+        margin-right: 20px;
+        }
+        
+        h1, h2, h3, h4 {
+        font-family: 'Lobster', cursive;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="page-header">
+            <!--<h1><a href='/{{ object.invoicee_name }}'>{{ object.invoicee_name }}</a></h1>-->
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Invoice Number</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Recipient</th>
+                    <th scope="col">Invoice Date</th>
+                    <th scope="col">Service Provided</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Number of Days</th>
+                    <th scope="col">Cab Price</th>
+                    <th scope="col">Total Price</th>
+                </tr>
+            </thead>
+            {% for object in recipent %}
+            <tbody>
+                <tr>
+                    <td><a href="/{{ object.id }}">{{ object.invoice_num }}</a></td>
+                    <td><a href="/vendor/{{ object.client_name }}">{{ object.client_name }}</a></td>
+                    <td><a href="/{{ object.invoicee_name }}">{{ object.invoicee_name }}</a></td>
+                    <td>{{ object.invoice_date }}</td>
+                    <td>{{ object.service }}</td>
+                    <td>{{ object.unt_price }}</td>
+                    <td>{{ object.n_days }}</td>
+                    <td>{{ object.cab_price }}</td>
+                    <td>{{ object.total_price }}</td>
+            {% empty %}
+                <p>No invoices yet.</p>
+            {% endfor %}        
+                        
+                </tr>
+            </tbody>
+            
+        </table>
+        {# .... **Now the pagination section** .... #}
+        {% if is_paginated %}
+            <div class="pagination">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                        <a href="/?page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    <span class="page-current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="/?page={{ page_obj.next_page_number }}">Next</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
