@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_list_or_404
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_list_or_404, HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
@@ -36,7 +36,7 @@ class InvoiceEdit(UpdateView):
     form_class = InvoiceForm
     template_name = 'invoice/invoice_edit.html'
 
-class InvoiceDelete(DetailView):
+class InvoiceDelete(DeleteView):
     model = Invoice
     template_name = 'invoice/invoice_confirm_delete.html'
     success_url = reverse_lazy('invoice-list')

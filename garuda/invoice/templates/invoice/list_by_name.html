@@ -20,6 +20,7 @@
         font-size: 36pt;
         text-decoration: none;
         }
+        
     
         .top-menu, .top-menu:hover, .top-menu:visited {
         color: white;
@@ -28,14 +29,17 @@
         margin-right: 20px;
         }
         
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, p{
         font-family: 'Lobster', cursive;
         }
     </style>
     </head>
     <body>
         <div class="page-header">
-            <!--<h1><a href='/{{ object.invoicee_name }}'>{{ object.invoicee_name }}</a></h1>-->
+            <p><a href='/'>Back to Invoice List</a></p>
+            {% for inv in recipent|slice:":1" %}
+                <h1><a href='/{{ inv.invoicee_name }}'>{{ inv.invoicee_name }}'s Invoices</a></h1>
+            {% endfor %}
         </div>
         <table class="table table-hover">
             <thead>
