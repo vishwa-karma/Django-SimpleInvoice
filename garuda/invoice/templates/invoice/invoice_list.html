@@ -35,8 +35,8 @@
 </head>
 <body>
     <div class="page-header">
-        <p><a href="/create" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></p>
-        <h1><a href='/'>Invoices</a></h1>
+        <p><a href="/invoice/create" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></p>
+        <h1><a href='/invoice'>Invoices</a></h1>
     </div>
     <table class="table table-hover">
         <thead>
@@ -44,6 +44,8 @@
                 <th scope="col">Invoice Number</th>
                 <th scope="col">Client</th>
                 <th scope="col">Recipient</th>
+                <th scope="col">Vendor</th>
+                <th scope="col">Location</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Service Provided</th>
                 <th scope="col">Unit Price</th>
@@ -55,15 +57,17 @@
         {% for object in object_list %}
         <tbody>
             <tr>
-                <td><a href="/{{ object.id }}">{{ object.invoice_num }}</a></td>
-                <td><a href="/vendor/{{ object.client_name }}">{{ object.client_name }}</a></td>
-                <td><a href="/{{ object.invoicee_name }}">{{ object.invoicee_name }}</a></td>
+                <td><a href="/invoice/{{ object.id }}">{{ object.invoice_num }}</a></td>
+                <td><a href="/invoice/client/{{ object.client_name }}">{{ object.client_name }}</a></td>
+                <td><a href="/invoice/invoicee/{{ object.invoicee_name }}">{{ object.invoicee_name }}</a></td>
+                <td><a href="/invoice/vendor/{{ object.vendor_name }}">{{ object.vendor_name }}</a></td>
+                <td><a href="/invoice/{{ object.client_loc }}">{{ object.client_loc }}</a></td>
                 <td>{{ object.invoice_date }}</td>
                 <td>{{ object.service }}</td>
                 <td>{{ object.unt_price }}</td>
                 <td>{{ object.n_days }}</td>
                 <td>{{ object.cab_price }}</td>
-                <td>{{ object.total_price }}</td>
+                <td>{{ object.grand_total }}</td>
         {% empty %}
             <p>No invoices yet.</p>
         {% endfor %}        

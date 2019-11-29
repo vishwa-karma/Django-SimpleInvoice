@@ -38,7 +38,7 @@
         <div class="page-header">
             <p><a href='/invoice'>Back to Invoice List</a></p>
             {% for inv in recipent|slice:":1" %}
-                <h1><a href='/invoice/invoicee/{{ inv.invoicee_name }}'>{{ inv.invoicee_name }}'s Invoices</a></h1>
+                <h1><a href='/invoice/client/{{ inv.client_name }}'>{{ inv.client_name }}'s Invoices</a></h1>
             {% endfor %}
         </div>
         <table class="table table-hover">

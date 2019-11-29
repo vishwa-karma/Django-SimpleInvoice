@@ -4,24 +4,58 @@
 
 
 {% block content %}
-    <form method="post" novalidate>{% csrf_token %}
+<h1 class="mt-2">New Invoice</h1>
+<hr class="mt-0 mb-4">
+    <form method="post" enctype="multipart/form-data" novalidate>{% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                {{ form.invoicee_name | as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.client_loc | as_crispy_field }}    
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-6">
+                    {{ form.po_number | as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.po_upload | as_crispy_field}}    
+                </div>
+            </div>
         <div class="row">
             <div class="col-6">
                 {{ form.invoice_num | as_crispy_field }}
             </div>
             <div class="col-6">
-                    
-                        {{ form.invoice_date | as_crispy_field }}
-                    
-                    
+                {{ form.invoice_date | as_crispy_field }}    
             </div>
         </div>
         {{ form.service | as_crispy_field }}
-        {{ form.unt_price | as_crispy_field }}
-        {{ form.n_days | as_crispy_field }}
-        {{ form.cab_price | as_crispy_field }}
-        {{ form.client_name | as_crispy_field }}
-        {{ form.invoicee_name | as_crispy_field }}
+        <div class="row">
+            <div class="col-6">
+                {{ form.unt_price | as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.n_days | as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                {{ form.vendor_name | as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.client_name | as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                {{ form.cab_price | as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.sgst | as_crispy_field }}
+            </div>
+        </div>
         <input type="submit" class="btn btn-success" value="Create Invoice">
     </form>
 {% endblock %}

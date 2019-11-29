@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import InvoiceListView, InvoiceDetailView, InvoiceCreateView, InvoiceEdit, InvoiceDelete, InvoiceMonthArchiveView
+from .views import InvoiceListView, InvoiceDetailView, InvoiceCreateView, InvoiceEdit, InvoiceDelete, InvoiceMonthArchiveView, dummy
 from . import views
 from django.views.generic.dates import ArchiveIndexView
 from .models import Invoice
@@ -19,6 +19,9 @@ urlpatterns = [
     path('<int:year>/<str:month>/',
          InvoiceMonthArchiveView.as_view(),
          name="archive_month"),
-    path('<str:r_name>/', views.RecipientView, name = 'recipient'),
-    path('vendor/<c_name>/', views.ListbyVendor, name = 'vendor'),    
+    path('invoicee/<str:r_name>/', views.RecipientView, name = 'recipient'),
+    path('client/<str:c_name>/', views.ListbyClient, name = 'client'),
+    path('vendor/<str:v_name>/', views.ListbyVendor, name = 'vendor'),    
+    path('dummy/<int:pk>', dummy, name = 'dummy'),
+    path('render/pdf/<int:pk>', views.GeneratePdf.as_view(), name = 'pdf_print'),
 ]

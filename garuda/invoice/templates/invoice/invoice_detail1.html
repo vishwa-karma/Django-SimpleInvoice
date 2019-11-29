@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<link rel="stylesheet" href="http://garuda.pythonanywhere.com/stuff/web-invoice/style.css">
+<h1 class="mt-2">{{ object.invoicee_name }}</h1>
+<hr class="mt-0 mb-4">
+<a href="/invoice/{{ object.id }}/edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/invoice/{{ object.id }}/delete">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/invoice/render/pdf/{{ object.id }}">Print</a>
+<header>         
+    <address>
+        <P>{{ object.invoicee_name }}</P>
+        <p>{{ object.invoicee_name.email_id }}</p>
+        <p>{{ object.invoicee_name.phone_num }}</p>
+    </address>
+        <table class="meta">
+            <tr>
+                <th>Invoice #:&nbsp;</th>
+                <td>{{ object.invoice_num }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ object.invoice_date | date }}</td>
+            </tr>
+            
+
+        </table>
+</header>
+<article>
+    <h5><b>Attention</b>: <span contenteditable>Ranga</span></h5>
+    <p>{{ object.vendor_name }}</p>
+    {{ object.vendor_name.v_address }}
+    <inventory>
+        <table class="details">
+        <thead>
+            <tr>
+                <th><span>PO Number</span></th>
+                <th><span>Client</span></th>
+                <th><span>Location</span></th>
+                <th><span>Duration</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ object.po_number }}</td>
+                <td>{{ object.client_name }}</span></td>
+                <td>{{ object.client_loc }}</td>
+                <td><span contenteditable>7-9, 12-14, 19-23 of August, 2019</span></td>
+            </tr>
+        </tbody>
+    </table>
+    </inventorys>
+    
+    <table class="inventory">
+        <thead>
+            <tr>
+                <th><span>Service</span></th>
+                <th><span>Rate per Day</span></th>
+                <th><span>No. of Days</span></th>
+                <th><span>Price</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ object.service }}</td>
+                <td><span data-prefix>₹</span>{{ object.unt_price }}</td>
+                <td>{{ object.n_days }}</td>
+                <td><span data-prefix>₹</span>{{ object.total_price_no_tax }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="balance">
+        <tr>
+            <th><span>IGST</span></th>
+            <td><span data-prefix>₹</span>{{ object.gst }}</td>
+        </tr>
+        <tr>
+            <th><span>Cab Expenses</span></th>
+            <td><span data-prefix>₹</span>{{ object.cab_price }}</td>
+        </tr>
+        <tr>
+            <th><span>Total Amount</span></th>
+            <td><span data-prefix>₹</span>{{ object.grand_total }}</td>
+        </tr>
+    </table>
+</article>
+<aside>
+    <h1><span>Payment Information</span></h1>
+<div>
+    <table class="accounts">
+        <tr>
+            <th><span>Account Holder Name</span></th>
+            <td>{{ object.invoicee_name }}</td>
+            <th><span>Bank</span></th>
+            <td>{{ object.invoicee_name.bank }}</td>
+        </tr>
+        <tr>
+            <th><span>Account #</span></th>
+            <td>{{ object.invoicee_name.acc_no }}</td>
+            <th><span>Branch</span></th>
+            <td>{{ object.invoicee_name.branch }}</td>
+        </tr>
+        <tr>
+            <th><span>IFSC</span></th>
+            <td>{{ object.invoicee_name.ifsc }}</td>
+            <th><span>PAN</span></th>
+            <td>{{ object.invoicee_name.pan_no }}</td>
+        </tr>
+    </table>
+</div>
+</aside>
+{% endblock %}
