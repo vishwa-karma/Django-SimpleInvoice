@@ -114,6 +114,6 @@ def dummy(request, pk):
 
     return render(request, 'invoice/invoice_detail3.html',  {'data':queryset})
 
-def seva(request):
-    render (request, 'seva/home.html')
+def seva():
+    render ('seva/home.html')
 
