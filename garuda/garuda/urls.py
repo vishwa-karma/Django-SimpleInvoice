@@ -23,4 +23,4 @@ urlpatterns = [
     path('invoice/', include("invoice.urls")),
     path('mf/', include("invoice.urls")),
     path('seva/', include("invoice.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
