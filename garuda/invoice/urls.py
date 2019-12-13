@@ -5,8 +5,8 @@ from django.views.generic.dates import ArchiveIndexView
 from .models import Invoice
 
 urlpatterns = [
-    path('', InvoiceListView.as_view(), name='invoice-list'),
-    #path('', views.seva, name='seva-kitchen'),
+    #path('', InvoiceListView.as_view(), name='invoice-list'),
+    path('', views.seva, name='seva-kitchen'),
     path('<int:pk>', InvoiceDetailView.as_view(), name='invoice-detail'),
     path('create/', InvoiceCreateView.as_view(), name='invoice-create'),
     path('<int:pk>/edit/', InvoiceEdit.as_view(), name='invoice-update'),
