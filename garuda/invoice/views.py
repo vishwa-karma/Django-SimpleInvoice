@@ -8,7 +8,7 @@ from django.views.generic import UpdateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.dates import MonthArchiveView
 from .models import Invoice, Invoicee, Client, Vendor
-from .forms import InvoiceForm
+from .forms import InvoiceForm, InvoiceCreateForm
 from django.http import HttpResponse
 from django.views.generic import View
 from invoice.utils import Render
@@ -53,8 +53,9 @@ class InvoiceDetailView(DetailView):
 
 class InvoiceCreateView(CreateView):
     model = Invoice
+    form_class = InvoiceCreateForm
     template_name = 'invoice/invoice_form.html'
-    fields = '__all__'
+    #fields = '__all__'
 
 class InvoiceEdit(UpdateView):
     model = Invoice
