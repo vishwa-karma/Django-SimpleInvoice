@@ -117,6 +117,4 @@ def dummy(request, pk):
 
 def seva(request):
     return render (request, 'seva/home.html')
-def seva_tiffin(request):
-    return(request, 'seva/seva_tiffin.html')
 
