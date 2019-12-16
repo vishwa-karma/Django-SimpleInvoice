@@ -118,3 +118,6 @@ def dummy(request, pk):
 def seva(request):
     return render (request, 'seva/home.html')
 
+def seva-poster(request):
+    return render (request, 'seva/poster.html')
+
