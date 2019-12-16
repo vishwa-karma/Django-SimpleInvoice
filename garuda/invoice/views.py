@@ -121,3 +121,18 @@ def seva(request):
 def seva_poster(request):
     return render (request, 'seva/poster.html')
 
+def seva_tiffin(request):
+    return render (request, 'seva/tiffin.html')
+
+def seva_jars(request):
+    return render (request, 'seva/jars.html')
+
+def seva_pitara(request):
+    return render (request, 'seva/pitara.html')
+
+def seva_news(request):
+    return render (request, 'seva/In_The_News.html')
+
+def seva_food(request):
+    return render (request, 'seva/excess_food.html')
+
