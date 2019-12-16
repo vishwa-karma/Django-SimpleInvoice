@@ -77,6 +77,15 @@
                 <!--
                 .style1 {color: #FF0000}
                 -->
+                .rowimg {
+                    display: flex;
+                }
+
+                /* Create two equal columns that sits next to each other */
+                .columnimg {
+                    flex: 50%;
+                    padding: 5px;
+                }
             </style>
 
     <div class="container-fluid bg">
@@ -135,8 +144,14 @@
             <div class="row sliderbg" style="margin-top:-20px;">
                 <div class="col-md-9">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <img src="{% static 'images/FB_IMG_1576482047862.jpg' %}">
-                        <img src="{% static 'images/FB_IMG_1576482060809.jpg' %}">
+                        <div class="rowimg">
+                            <div class="columnimg">
+                                <img src="{% static 'images/FB_IMG_1576482047862.jpg' %}" alt=jars1>
+                            </div>
+                            <div class="columnimg">
+                                <img src="{% static 'images/FB_IMG_1576482060809.jpg' %}" alt=jars2>
+                            </div>
+                        </div>
                         <p style="font-size: medium;">Deliver your love as a mother or a daughter to those in need . You Jar of Kindness will reach underprivileged children and senior citizens , giving them the emotional nutrition they need.
 
 When you make snacks , cookies and other yummies for your children or parents, make a jar for Seva Kitchen. Your jar of kindness will then be shared with  Orphanages, Old Age Homes and Schools for Under privileged Children. Sign Up for Seva if you wish to start a group or join a group in your city or call us on 9561011264.</p>
