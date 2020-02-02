@@ -13,6 +13,7 @@ from django.http import HttpResponse
 from django.views.generic import View
 from invoice.utils import Render
 
+
 def some_view(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
@@ -33,6 +34,7 @@ def some_view(request):
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
 
+
 # Create your views here.
 class InvoiceListView(ListView):
     model = Invoice
@@ -51,88 +53,104 @@ class InvoiceDetailView(DetailView):
         inv = super().get_context_data(**kwargs)
         return inv
 
+
 class InvoiceCreateView(CreateView):
     model = Invoice
     form_class = InvoiceCreateForm
     template_name = 'invoice/invoice_form.html'
-    #fields = '__all__'
+    # fields = '__all__'
+
 
 class InvoiceEdit(UpdateView):
     model = Invoice
     form_class = InvoiceForm
     template_name = 'invoice/invoice_edit.html'
 
+
 class InvoiceDelete(DeleteView):
     model = Invoice
     template_name = 'invoice/invoice_confirm_delete.html'
     success_url = reverse_lazy('invoice-list')
+
 
 class InvoiceMonthArchiveView(MonthArchiveView):
     queryset = Invoice.objects.all()
     date_field = "invoice_date"
     allow_future = True
 
+
 def RecipientView(request, r_name):
     recipent = Invoice.objects.filter(invoicee_name__r_name=r_name)
-    return render(request, 'invoice/list_by_name.html', {'recipent':recipent})
+    return render(request, 'invoice/list_by_name.html', {'recipent': recipent})
+
 
 def ListbyClient(request, c_name):
     queryset = Invoice.objects.filter(client_name__c_name=c_name)
     recipent = get_list_or_404(queryset)
-    return render(request, 'invoice/list_by_client.html',  {'recipent':recipent})
+    return render(request, 'invoice/list_by_client.html', {'recipent': recipent})
+
 
 def ListbyVendor(request, v_name):
     queryset = Invoice.objects.all().filter(vendor_name__v_name=v_name)
     recipent = get_list_or_404(queryset)
-    return render(request, 'invoice/list_by_vendor.html',  {'recipent':recipent})
+    return render(request, 'invoice/list_by_vendor.html', {'recipent': recipent})
+
 
 class GeneratePdf(View):
-    
+
     def get(self, request, pk):
         invoices = Invoice.objects.get(pk=pk)
         data = {
-            'object':invoices
+            'object': invoices
         }
         pdf = Render.render('invoice/invoice_print.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
 
+
 def dummy1(request, pk):
-    queryset = Invoice.objects.filter(pk = pk)
+    queryset = Invoice.objects.filter(pk=pk)
     recipent = get_object_or_404(queryset)
     queryset1 = Vendor.objects.filter(invoice=pk)
     queryset2 = Invoicee.objects.filter(invoice=pk)
     invoicee = get_object_or_404(queryset2)
     vendor = get_object_or_404(queryset1)
     print(type(invoicee))
-    output = {'a':recipent,
-            'b': vendor,
-            'c': invoicee}
-    return render(request, 'invoice/invoice_detail2.html',  {'data':output})
+    output = {'a': recipent,
+              'b': vendor,
+              'c': invoicee}
+    return render(request, 'invoice/invoice_detail2.html', {'data': output})
+
 
 def dummy(request, pk):
     queryset = Invoice.objects.get(pk=pk)
-    #output = get_object_or_404(queryset)
+    # output = get_object_or_404(queryset)
 
-    return render(request, 'invoice/invoice_detail3.html',  {'data':queryset})
+    return render(request, 'invoice/invoice_detail3.html', {'data': queryset})
+
 
 def seva(request):
-    return render (request, 'seva/home.html')
+    return render(request, 'seva/home.html')
+
 
 def seva_poster(request):
-    return render (request, 'seva/poster.html')
+    return render(request, 'seva/poster.html')
+
 
 def seva_tiffin(request):
-    return render (request, 'seva/tiffin.html')
+    return render(request, 'seva/tiffin.html')
+
 
 def seva_jars(request):
-    return render (request, 'seva/jars.html')
+    return render(request, 'seva/jars.html')
+
 
 def seva_pitara(request):
-    return render (request, 'seva/pitara.html')
+    return render(request, 'seva/pitara.html')
+
 
 def seva_news(request):
-    return render (request, 'seva/In_The_News.html')
+    return render(request, 'seva/In_The_News.html')
+
 
 def seva_food(request):
-    return render (request, 'seva/excess_food.html')
-
+    return render(request, 'seva/excess_food.html')
