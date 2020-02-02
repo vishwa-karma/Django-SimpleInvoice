@@ -7,9 +7,11 @@
 <link rel="stylesheet" href="http://garuda.pythonanywhere.com/stuff/web-invoice/style.css">
 <h1 class="mt-2">{{ object.invoicee_name }}</h1>
 <hr class="mt-0 mb-4">
-<a href="/invoice/{{ object.id }}/edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="/invoice/{{ object.id }}/delete">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="/invoice/render/pdf/{{ object.id }}">Print</a>
+{% if user.is_authenticated %}
+    <a href="/invoice/{{ object.id }}/edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/invoice/{{ object.id }}/delete">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/invoice/render/pdf/{{ object.id }}">Print</a>
+{% endif %}
 <header>         
     <address>
         <P>{{ object.invoicee_name }}</P>
