@@ -35,8 +35,10 @@
 </head>
 <body>
     <div class="page-header">
-        <p><a href="/invoice/create" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></p>
-        <h1><a href='/invoice'>Invoices</a></h1>
+        {% if user.is_authenticated %}
+            <p><a href="/invoice/create" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></p>
+            <h1><a href='/invoice'>Invoices</a></h1>
+        {% endif %}
     </div>
     <table class="table table-hover">
         <thead>
