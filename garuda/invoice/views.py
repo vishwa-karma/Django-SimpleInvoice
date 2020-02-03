@@ -12,6 +12,7 @@ from .forms import InvoiceForm, InvoiceCreateForm
 from django.http import HttpResponse
 from django.views.generic import View
 from invoice.utils import Render
+from django.contrib.auth.forms import UserCreationForm
 
 
 def some_view(request):
@@ -36,6 +37,12 @@ def some_view(request):
 
 
 # Create your views here.
+class SignUp(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'
+
+    
 class InvoiceListView(ListView):
     model = Invoice
     paginate_by = 12
