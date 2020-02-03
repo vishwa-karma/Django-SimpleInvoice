@@ -13,7 +13,6 @@ urlpatterns = [
     #path('food/', views.seva_food, name='seva-food'),
     #path('news/', views.seva_news, name='seva-news'),
     #path('jars/', views.seva_jars, name='seva-jars'),
-    path('signup/', views.SignUp.as_view(), name='signup'),
     path('<int:pk>', InvoiceDetailView.as_view(), name='invoice-detail'),
     path('create/', InvoiceCreateView.as_view(), name='invoice-create'),
     path('<int:pk>/edit/', InvoiceEdit.as_view(), name='invoice-update'),
