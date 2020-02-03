@@ -40,9 +40,9 @@ def some_view(request):
 class SignUp(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
-    template_name = 'signup.html'
+    template_name = 'invoice/signup.html'
 
-    
+
 class InvoiceListView(ListView):
     model = Invoice
     paginate_by = 12
